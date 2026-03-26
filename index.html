@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Dayane de Paula | Beleza e Estética Premium</title>
+  <meta name="description" content="Studio de beleza premium em Belo Horizonte/MG especializado em extensão de cílios e design de sobrancelhas.">
+  <link rel="icon" type="image/png" href="imgs/logo.png">
+  <link rel="apple-touch-icon" href="imgs/logo.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main:      #090909;
+      --bg-secondary: #111111;
+      --bg-card:      #161616;
+      --text-primary: #f0ece8;
+      --text-muted:   #b8b0a8;
+      --pink:         #e2bcbc;
+      --pink-dim:     rgba(226, 188, 188, 0.12);
+      --gold:         #c9a96e;
+      --border:       rgba(226, 188, 188, 0.1);
+      --border-hover: rgba(226, 188, 188, 0.35);
+      --radius-md:    24px;
+      --radius-lg:    32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-primary);
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.72s ease, transform 0.72s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.22s; }
+    .delay-3 { transition-delay: 0.34s; }
+    .delay-4 { transition-delay: 0.46s; }
+
+    .divider {
+      width: 44px; height: 1.5px;
+      background: var(--pink);
+      margin: 0 auto 5rem;
+      opacity: 0.55;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top: 0; width: 100%;
+      padding: 1.1rem 0;
+      background: transparent;
+      z-index: 1100;
+      transition: background 0.4s, padding 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(9,9,9,0.96);
+      backdrop-filter: blur(16px);
+      padding: 0.72rem 0;
+      border-bottom-color: var(--border);
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--text-primary) !important;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+    .nav-link {
+      color: var(--text-muted) !important;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      padding: 0.4rem 1rem !important;
+      transition: color 0.22s !important;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--pink) !important; }
+    .navbar-toggler { border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    /* HERO */
+    header {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 0 24px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 38%, rgba(226,188,188,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(201,169,110,0.03) 0%, transparent 60%);
+    }
+    .hero-watermark {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 540px; height: 540px;
+      background: url("imgs/logo.png") no-repeat center / contain;
+      opacity: 0.065; pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 1.8rem; opacity: 0.8;
+    }
+    header h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      letter-spacing: 4px; line-height: 1.2;
+      margin-bottom: 1.4rem; color: var(--text-primary);
+    }
+    header p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted); font-weight: 300;
+      max-width: 540px; margin: 0 auto 2.6rem;
+    }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--pink); color: #1a0f0f;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px; border-radius: 50px;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .btn-cta:hover {
+      background: #edd4d4; color: #1a0f0f;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(226,188,188,0.2);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--text-primary);
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px; border-radius: 50px;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--border-hover); color: var(--pink); }
+    .hero-scroll {
+      position: absolute; bottom: 2.4rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 0.68rem;
+      letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.45;
+    }
+    .scroll-bar {
+      width: 1px; height: 38px; background: var(--pink);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 0.25; transform: scaleY(1); }
+      50%      { opacity: 0.8;  transform: scaleY(0.55); }
+    }
+
+    /* SECTIONS */
+    .section { padding: 120px 24px; }
+    .section-header { text-align: center; }
+    .section-label {
+      display: block; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 0.75rem; opacity: 0.8;
+    }
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 500; line-height: 1.2;
+      margin-bottom: 0.9rem; color: var(--text-primary);
+    }
+    .section-sub {
+      font-size: 0.95rem; color: var(--text-muted);
+      font-weight: 300; max-width: 460px;
+      margin: 0 auto 1.4rem;
+    }
+
+    /* STATS */
+    #stats {
+      padding: 56px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item { text-align: center; padding: 1.4rem 1rem; }
+    .stat-num {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 500; color: var(--pink);
+      line-height: 1; display: block; margin-bottom: 0.45rem;
+    }
+    .stat-lbl {
+      font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* SOBRE CARDS */
+    .sobre-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 2.2rem 1.8rem;
+      text-align: center; height: 100%; position: relative; overflow: hidden;
+      transition: border-color 0.32s, transform 0.32s;
+    }
+    .sobre-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+      opacity: 0; transition: opacity 0.32s;
+    }
+    .sobre-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .sobre-card:hover::before { opacity: 1; }
+    .card-icon {
+      width: 42px; height: 42px; border-radius: 11px;
+      background: var(--pink-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.15rem; font-size: 17px; color: var(--pink);
+    }
+    .sobre-card h5 {
+      font-family: "Playfair Display", serif;
+      color: var(--text-primary); font-size: 1.08rem; font-weight: 500;
+      margin-bottom: 0.65rem;
+    }
+    .sobre-card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; }
+
+    /* SERVIÇOS */
+    .service-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden; height: 100%;
+      transition: border-color 0.32s, transform 0.32s, box-shadow 0.32s;
+    }
+    .service-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-7px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.38);
+    }
+    .svc-img { position: relative; overflow: hidden; }
+    .svc-img img {
+      width: 100%; height: 340px; object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .service-card:hover .svc-img img { transform: scale(1.04); }
+    .svc-img::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 110px;
+      background: linear-gradient(transparent, var(--bg-card));
+    }
+    .svc-body { padding: 1.9rem 2.1rem 2.3rem; }
+    .svc-badge {
+      display: inline-block; font-size: 0.66rem; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--pink); background: var(--pink-dim);
+      padding: 5px 13px; border-radius: 50px; margin-bottom: 0.9rem;
+    }
+    .svc-body h4 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.45rem; font-weight: 500;
+      color: var(--text-primary); margin-bottom: 0.65rem;
+    }
+    .svc-body p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 1.4rem; }
+    .svc-price { display: flex; align-items: baseline; gap: 6px; }
+    .price-from { font-size: 0.74rem; color: var(--text-muted); }
+    .price-val {
+      font-family: "Playfair Display", serif;
+      font-size: 1.45rem; color: var(--gold); font-weight: 500;
+    }
+
+    /* GALERIA */
+    .gallery-wrap { position: relative; overflow: hidden; }
+    .gfade-l { position: absolute; left: 0; top: 0; bottom: 0; width: 110px; background: linear-gradient(90deg, var(--bg-main), transparent); z-index: 2; pointer-events: none; }
+    .gfade-r { position: absolute; right: 0; top: 0; bottom: 0; width: 110px; background: linear-gradient(-90deg, var(--bg-main), transparent); z-index: 2; pointer-events: none; }
+    .netflix-track {
+      display: flex; width: max-content;
+      animation: slide 50s linear infinite;
+      padding: 16px 0;
+    }
+    .netflix-track:hover { animation-play-state: paused; }
+    .netflix-item {
+      width: 265px; height: 265px;
+      margin: 0 9px; flex-shrink: 0;
+      border-radius: var(--radius-md); overflow: hidden;
+    }
+    .netflix-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s;
+    }
+    .netflix-item:hover img { transform: scale(1.06); }
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* WHATSAPP */
+    .wa-float {
+      position: fixed; bottom: 26px; right: 26px;
+      background: var(--pink); color: #1a0f0f;
+      width: 54px; height: 54px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 8px 28px rgba(226,188,188,0.28);
+      z-index: 1000; text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 14px 36px rgba(226,188,188,0.38); }
+
+    /* FOOTER */
+    footer {
+      background: #060606;
+      border-top: 1px solid var(--border);
+      padding: 68px 24px 38px;
+    }
+    .footer-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem; font-weight: 500;
+      color: var(--text-primary); margin-bottom: 0.45rem;
+    }
+    .footer-tag { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+    .footer-col-label {
+      font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 1rem; display: block;
+    }
+    .footer-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.88rem; transition: color 0.22s;
+    }
+    .footer-link:hover { color: var(--pink); }
+    .footer-hr { border-color: var(--border); margin: 2rem 0; }
+    .footer-copy { font-size: 0.76rem; color: var(--text-muted); opacity: 0.45; }
+
+    /* FAQ */
+    #faq { padding: 120px 24px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-btn {
+      width: 100%; background: none; border: none; outline: none;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1.5rem;
+      padding: 1.6rem 0;
+      cursor: pointer;
+      text-align: left;
+    }
+    .faq-btn span {
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--text-primary);
+      transition: color 0.22s;
+    }
+    .faq-btn:hover span { color: var(--pink); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pink); font-size: 18px; line-height: 1;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--border-hover); }
+    .faq-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-body { max-height: 300px; }
+    .faq-body p {
+      color: var(--text-muted); font-size: 0.93rem;
+      line-height: 1.85; padding-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 80px 20px; }
+      #faq { padding: 80px 20px; }
+      .netflix-item { width: 218px; height: 218px; }
+      .gfade-l, .gfade-r { width: 55px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg" id="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#">Studio Dayane de Paula</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-1">
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cta">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="hero-bg"></div>
+    <div class="hero-watermark"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow reveal">Beleza &amp; Estética · Belo Horizonte, MG</span>
+      <h1 class="reveal delay-1">Studio Dayane<br>de Paula</h1>
+      <p class="reveal delay-2">Um refúgio de elegância onde sua beleza natural é elevada com sofisticação e cuidado exclusivo.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap reveal delay-3">
+        <a href="https://wa.me/5599999999999" target="_blank" class="btn-cta">
+          Agendar pelo WhatsApp
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#servicos" class="btn-outline">Ver serviços</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="container">
+      <div class="row g-0 justify-content-center">
+        <div class="col-6 col-md-3 reveal">
+          <div class="stat-item">
+            <span class="stat-num">Rápida</span>
+            <span class="stat-lbl">Resposta no WhatsApp</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal delay-1">
+          <div class="stat-item" style="border-left:1px solid var(--border)">
+            <span class="stat-num">100+</span>
+            <span class="stat-lbl">Clientes atendidas</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal delay-2">
+          <div class="stat-item" style="border-left:1px solid var(--border)">
+            <span class="stat-num">100%</span>
+            <span class="stat-lbl">Produtos premium</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal delay-3">
+          <div class="stat-item" style="border-left:1px solid var(--border)">
+            <span class="stat-num">★ 5.0</span>
+            <span class="stat-lbl">Avaliação das clientes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Conheça o Studio</span>
+        <h2 class="section-title">Excelência em cada detalhe</h2>
+        <p class="section-sub">Fundado com a missão de transformar rotinas em rituais de beleza únicos e memoráveis.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-3 col-md-6 reveal delay-1">
+          <div class="sobre-card">
+            <div class="card-icon">✦</div>
+            <h5>Área de Atuação</h5>
+            <p>Estética premium com foco em realçar sua identidade única.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal delay-2">
+          <div class="sobre-card">
+            <div class="card-icon">◈</div>
+            <h5>Missão</h5>
+            <p>Elevar sua autoestima por meio de experiências personalizadas e resultados impecáveis.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal delay-3">
+          <div class="sobre-card">
+            <div class="card-icon">◇</div>
+            <h5>Valores</h5>
+            <p>Excelência · Sofisticação · Cuidado · Discrição</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal delay-4">
+          <div class="sobre-card">
+            <div class="card-icon">❖</div>
+            <h5>Diferenciais</h5>
+            <p>Técnica avançada, produtos premium e ambiente acolhedor e sofisticado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="section" style="background:var(--bg-secondary)">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">O que oferecemos</span>
+        <h2 class="section-title">Nossos Serviços</h2>
+        <p class="section-sub">Técnicas modernas aliadas ao cuidado artesanal para resultados que encantam.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-6 reveal delay-1">
+          <div class="service-card">
+            <div class="svc-img"><img src="imgs/8.jpg" alt="Extensão de Cílios" loading="lazy"></div>
+            <div class="svc-body">
+              <h4>Extensão de Cílios</h4>
+              <p>Técnica moderna para um olhar expressivo, natural e duradouro. Fios selecionados com aplicação fio a fio.</p>
+              <div class="svc-price">
+                <span class="price-from">A partir de</span>
+                <span class="price-val">R$ 180,00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal delay-2">
+          <div class="service-card">
+            <div class="svc-img"><img src="imgs/4.jpg" alt="Design de Sobrancelhas" loading="lazy"></div>
+            <div class="svc-body">
+              <h4>Design de Sobrancelhas</h4>
+              <p>Harmonização facial com foco em simetria, proporção e elegância. Modelagem personalizada para cada rosto.</p>
+              <div class="svc-price">
+                <span class="price-from">A partir de</span>
+                <span class="price-val">R$ 90,00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Nosso trabalho</span>
+        <h2 class="section-title">Galeria</h2>
+        <p class="section-sub">Cada resultado é uma obra personalizada de beleza.</p>
+        <div class="divider"></div>
+      </div>
+    </div>
+    <div class="gallery-wrap reveal">
+      <div class="gfade-l"></div>
+      <div class="gfade-r"></div>
+      <div class="netflix-track">
+        <div class="netflix-item"><img src="imgs/1.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/2.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/3.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/4.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/5.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/6.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/1.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/2.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/3.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/4.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/5.jpg" alt="Resultado" loading="lazy"></div>
+        <div class="netflix-item"><img src="imgs/6.jpg" alt="Resultado" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Tire suas dúvidas</span>
+        <h2 class="section-title">Perguntas frequentes</h2>
+        <p class="section-sub">Tudo o que você precisa saber antes de agendar.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+
+          <div class="faq-item reveal delay-1">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+              <span>Quanto tempo dura o procedimento de extensão de cílios?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-body">
+              <p>A aplicação completa leva entre 1h30 e 2h, dependendo do volume escolhido.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-2">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+              <span>Por quanto tempo os cílios ficam duradouros?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-body">
+              <p>Em média, a extensão dura entre 3 e 5 semanas com os cuidados corretos. A queda natural dos cílios acontece com o ciclo capilar, por isso o preenchimento regular é recomendado.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-3">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+              <span>Preciso de algum cuidado antes do atendimento?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-body">
+              <p>Chegue com os cílios limpos e sem maquiagem. Evite creme ao redor dos olhos no dia do procedimento. Caso use lentes de contato, prefira retirá-las durante o atendimento.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-4">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+              <span>Como funciona o agendamento?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-body">
+              <p>O agendamento é feito diretamente pelo WhatsApp. Respondemos rapidamente e confirmamos o horário disponível conforme sua preferência de data.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-4">
+            <button class="faq-btn" onclick="toggleFaq(this)">
+              <span>O design de sobrancelhas é adequado para todos os tipos de rosto?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-body">
+              <p>Sim! A modelagem é 100% personalizada, respeitando a estrutura facial, o crescimento natural e a preferência de cada cliente. O objetivo é sempre harmonia e naturalidade.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" style="background:var(--bg-secondary); padding:90px 24px; text-align:center; border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Vamos conversar</span>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:500;margin-bottom:0.85rem;">Pronta para se transformar?</h2>
+        <p style="color:var(--text-muted);font-size:0.97rem;max-width:400px;margin:0 auto 2.3rem;">Entre em contato pelo WhatsApp ou nos siga no Instagram para ver mais do nosso trabalho.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="https://wa.me/5599999999999" target="_blank" class="btn-cta">
+            WhatsApp
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://instagram.com/studiodayanedepaula_04" target="_blank" class="btn-outline">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/5599999999999" class="wa-float" target="_blank" aria-label="WhatsApp">💬</a>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-5 align-items-start">
+        <div class="col-md-5">
+          <p class="footer-brand">Studio Dayane de Paula</p>
+          <p class="footer-tag">Beleza que eleva, cuidado que transforma.</p>
+        </div>
+        <div class="col-md-3">
+          <span class="footer-col-label">Localização</span>
+          <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.8;">Bairro Lagoa<br>Belo Horizonte — MG</p>
+        </div>
+        <div class="col-md-4">
+          <span class="footer-col-label">Redes & Contato</span>
+          <div style="display:flex;flex-direction:column;gap:0.55rem;">
+            <a href="https://wa.me/5599999999999" target="_blank" class="footer-link">↗ WhatsApp</a>
+            <a href="https://instagram.com/studiodayanedepaula_04" target="_blank" class="footer-link">↗ Instagram</a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-hr">
+      <p class="footer-copy text-center">© 2026 Studio Dayane de Paula. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { threshold: 0.45 });
+    document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+</html>
