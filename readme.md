@@ -2,6 +2,9 @@
 
 Este repositório apresenta o projeto **Studio Dayane de Paula**, uma landing page premium desenvolvida para um estúdio de beleza, com foco em estética, sofisticação e conversão de clientes.
 
+🔗 **Visualização do projeto:**  
+https://studiodp.netlify.app
+
 O projeto foi construído com o objetivo de oferecer uma experiência visual elegante, destacando serviços, portfólio e facilitando o contato direto via WhatsApp.
 
 ---
